@@ -29,3 +29,24 @@ function printPersons(persons){
     }
 }
 printPersons(persons);
+
+// MILESTONE 2:
+// Stampare le stesse informazioni su DOM sottoforma di stringhe
+function printPersonsToDOM(persons, parentID){
+    const lengthOfPersons = persons.length;
+    // seleziono l'elemtno a cui appenderò i miei elementi
+    const parent = document.getElementById(parentID)
+    // creo un nuovo sottoelemento a cui appendere i miei elementi per ridurre il numero di chiamate al DOM
+    const innerParent = document.createElement("div")
+    for (let i = 0; i < lengthOfPersons; i++){
+        const person = persons[i];
+        // per ogni persona creo un paragrafo
+        const element = document.createElement('p')
+        // inserisco i valori nel paragrafo
+        element.innerText = `nome: ${person.name}\nruolo: ${person.role}\nnome immagine: ${person.image}` 
+        // appendo il paragrado al mio innerParent
+        innerParent.appendChild(element) 
+    }
+    parent.appendChild(innerParent)
+}
+printPersonsToDOM(persons, "content")
