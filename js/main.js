@@ -19,4 +19,13 @@ const persons = [
     Persona("Barbara Ramos", "Graphic Designer", "barbara-ramos-graphic-designer.jpg")
 ]
 
-console.log(persons[0].name)
+// MILESTONE 1:
+// Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
+function printPersons(persons){
+    const lengthOfPersons = persons.length;
+    for (let i = 0; i < lengthOfPersons; i++){
+        const person = persons[i];
+        console.log(`nome: ${person.name}\nruolo: ${person.role}\nnome immagine: ${person.image}`)
+    }
+}
+printPersons(persons);
