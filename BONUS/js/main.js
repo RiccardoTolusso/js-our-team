@@ -52,7 +52,7 @@ function printPersonsToDOM(persons, parentID){
 }
 // printPersonsToDOM(persons, "content")
 
-// BONUS
+// BONUS 1
 function printPersonsBonus1(persons, parentID){
     const lengthOfPersons = persons.length;
     // seleziono l'elemtno a cui appenderò i miei elementi
@@ -81,4 +81,54 @@ function printPersonsBonus1(persons, parentID){
     }
     parent.appendChild(innerParent)
 }
-printPersonsBonus1(persons, "content")
+// printPersonsBonus1(persons, "content")
+
+// BONUS 2:
+// Organizzare i singoli membri in card/schede
+
+function printPersonsBonus2(persons, parentID){
+    const lengthOfPersons = persons.length;
+    // seleziono l'elemtno a cui appenderò i miei elementi
+    const container = document.getElementById(parentID);
+    // creo un nuovo sottoelemento a cui appendere i miei elementi per ridurre il numero di chiamate al DOM
+    const row = document.createElement("div");
+    row.className = "row"; 
+    //definisco una costante che contiene una stringa con il percorso alla cartella delle immagini
+    const pathToImgFolder = "./img/";
+    for (let i = 0; i < lengthOfPersons; i++){
+        const person = persons[i];
+        // creo una card
+        const card = document.createElement("div")
+        card.className = "card"
+
+        // IMMAGINE
+        // creo un elemento img
+        const imgElement = document.createElement("img");
+        imgElement.src = pathToImgFolder + person.image;
+        imgElement.alt = "foto di " + person.name;
+        card.appendChild(imgElement)
+
+        // NOME 
+        // creo un elemento h3
+        const nameElement = document.createElement('h3');
+        // inserisco i valore del nome
+        nameElement.innerText = person.name;
+        // appendo l'h3 alla mia card
+        card.appendChild(nameElement);
+
+        // RUOLO
+        // creo un elemento p
+        const roleElement = document.createElement("p");
+        // inserisco il valore del ruolo
+        roleElement.innerText = person.role;
+        // appendo il paragrafo alla mia card
+        card.appendChild(roleElement)
+
+
+        //appendo la mia card alla row
+        row.appendChild(card)
+    }
+    // appendo la mia row al container
+    container.appendChild(row)
+}
+printPersonsBonus2(persons, "container")
