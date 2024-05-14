@@ -1,3 +1,4 @@
+"use strict"
 // MILESTONE 0:
 // Creare l’array di oggetti con le informazioni fornite.
 
@@ -49,6 +50,35 @@ function printPersonsToDOM(persons, parentID){
     }
     parent.appendChild(innerParent)
 }
-printPersonsToDOM(persons, "content")
+// printPersonsToDOM(persons, "content")
 
+// BONUS
+function printPersonsBonus1(persons, parentID){
+    const lengthOfPersons = persons.length;
+    // seleziono l'elemtno a cui appenderò i miei elementi
+    const parent = document.getElementById(parentID)
+    // creo un nuovo sottoelemento a cui appendere i miei elementi per ridurre il numero di chiamate al DOM
+    const innerParent = document.createElement("div")
+    //definisco una costante che contiene una stringa con il percorso alla cartella delle immagini
+    const pathToImgFolder = "./img/"
+    for (let i = 0; i < lengthOfPersons; i++){
+        const person = persons[i];
+        // IMMAGINE
+        // creo un elemento img
+        const imgElement = document.createElement("img");
+        imgElement.src = pathToImgFolder + person.image;
+        imgElement.alt = "foto di " + person.name;
+        innerParent.appendChild(imgElement)
 
+        // NOME E RUOLO
+        // per ogni persona creo un paragrafo
+        const element = document.createElement('p');
+        // inserisco i valori di nome e ruolo nel paragrafo
+        element.innerText = `nome: ${person.name}\nruolo: ${person.role}`;
+        // appendo il paragrado al mio innerParent
+        innerParent.appendChild(element);
+
+    }
+    parent.appendChild(innerParent)
+}
+printPersonsBonus1(persons, "content")
